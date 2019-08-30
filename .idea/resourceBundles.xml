@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/main/resources/LocalizationPlugg.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/LocalizationPlugg_en.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/LocalizationPlugg_se.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/LocalizationPlugg.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/LocalizationPlugg_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/LocalizationPlugg_fr.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/LocalizationPlugg_se.properties" />
+      <base-name>LocalizationPlugg</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>
