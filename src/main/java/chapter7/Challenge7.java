@@ -1,4 +1,4 @@
-package kap7;
+package chapter7;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

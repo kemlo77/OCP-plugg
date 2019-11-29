@@ -1,4 +1,4 @@
-package kap7;
+package chapter7;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
