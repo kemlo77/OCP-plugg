@@ -12,8 +12,8 @@ public class HelloDatabase {
   public static void main(String[] args) {
     String databaseURL = "jdbc:derby:bikesdb;create=true";
 
-    try (Connection conn = DriverManager.getConnection(databaseURL)
-        ; Statement statement = conn.createStatement();) {
+    try (Connection conn = DriverManager.getConnection(databaseURL);
+        Statement statement = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);) {
 
       // create database
       if (!doesTableExists("bikes", conn)) {
