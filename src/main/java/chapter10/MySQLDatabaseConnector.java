@@ -6,14 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SetupDerybDatabase {
+public class MySQLDatabaseConnector {
 
   public static void main(String[] args) {
 
-    String url = "jdbc:derby:zoodb;create=true";
+    String url = "jdbc:mysql://localhost:3306/phonebook";
 
-    try (Connection conn = DriverManager.getConnection(url);
+    try (Connection conn = DriverManager.getConnection(url,"dbuser","pwd2018");
         Statement stmt = conn.createStatement()) {
+      ResultSet rs = stmt.executeQuery("SHOW TABLES");
+      while (rs.next()) {
+        System.out.println(rs.getString(1));
+      }
+
+
 
       stmt.executeUpdate("DROP TABLE species");
       stmt.executeUpdate("DROP TABLE animal");
@@ -21,7 +27,8 @@ public class SetupDerybDatabase {
       stmt.executeUpdate(
           "CREATE TABLE species (id INTEGER PRIMARY KEY, name VARCHAR(255), num_acres DECIMAL)");
       stmt.executeUpdate(
-          "CREATE TABLE animal (id INTEGER PRIMARY KEY, species_id integer, name VARCHAR(255), date_born TIMESTAMP)");
+          "CREATE TABLE animal (id INTEGER PRIMARY KEY, species_id integer, name VARCHAR(255),"
+              + " date_born TIMESTAMP)");
 
       stmt.executeUpdate("INSERT INTO species VALUES (1, 'African Elephant', 7.5)");
       stmt.executeUpdate("INSERT INTO species VALUES (2, 'Zebra', 1.2)");
@@ -31,19 +38,6 @@ public class SetupDerybDatabase {
       stmt.executeUpdate("INSERT INTO animal VALUES (3, 1 , 'Ester', '2002-09-09 02:15:00')");
       stmt.executeUpdate("INSERT INTO animal VALUES (4, 1 , 'Eddie', '2010-06-08 02:15:00')");
       stmt.executeUpdate("INSERT INTO animal VALUES (5, 2 , 'Zoe',   '2005-11-12 02:15:00')");
-
-      ResultSet rs = stmt.executeQuery("SELECT * FROM animal");
-      if (rs.next()) {
-        java.sql.Date date = rs.getDate("date_born");
-        System.out.println(date.toLocalDate()); // 2001-05-06
-
-        java.sql.Time time = rs.getTime("date_born");
-        System.out.println(time.toLocalTime()); // 02:15
-
-        java.sql.Timestamp timestamp = rs.getTimestamp("date_born");
-        System.out.println(timestamp.toLocalDateTime()); // 2001-05-06T02:15
-
-      }
 
 
     } catch (SQLException e) {
